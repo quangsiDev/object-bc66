@@ -9,6 +9,6 @@ function SinhVien(ma, ten, email, matKhau, toan, ly, hoa) {
   this.ly = ly;
   this.hoa = hoa;
   this.tinhDTB = function () {
-    return (this.toan + this.ly + this.hoa) / 3;
+    return (this.toan * 1 + this.ly * 1 + this.hoa * 1) / 3;
   };
 }

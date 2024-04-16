@@ -5,7 +5,7 @@ function renderDssv(svArray) {
   //  render array thành table
   var contentHTML = "";
   //duyệt mảng
-  for (var i = 0; i < svArray.length; i++) {
+  for (var i = svArray.length - 1; i >= 0; i--) {
     var sv = svArray[i];
     var trString = ` <tr>
                             <td>${sv.ma}</td>
@@ -33,9 +33,9 @@ function layThongTinTuForm() {
   var ten = document.getElementById("txtTenSV").value;
   var email = document.getElementById("txtEmail").value;
   var matKhau = document.getElementById("txtPass").value;
-  var toan = document.getElementById("txtDiemToan").value * 1;
-  var ly = document.getElementById("txtDiemLy").value * 1;
-  var hoa = document.getElementById("txtDiemHoa").value * 1;
+  var toan = document.getElementById("txtDiemToan").value;
+  var ly = document.getElementById("txtDiemLy").value;
+  var hoa = document.getElementById("txtDiemHoa").value;
   //   tạo object
   var sv = new SinhVien(ma, ten, email, matKhau, toan, ly, hoa);
   return sv;

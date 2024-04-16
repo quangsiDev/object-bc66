@@ -35,16 +35,39 @@ if (dataJson !== null) {
 
 function themSv() {
   var sv = layThongTinTuForm();
-  //   lưu sv vào danh sách
-  dssv.push(sv);
-  //   lưu data xuống localStorage
-  //   b1: convert array to json
-  var dataJson = JSON.stringify(dssv);
-  //   b2: lưu json vào vùng nhớ localStorage
-  localStorage.setItem("DSSV", dataJson);
-  renderDssv(dssv);
-  // reset form sau khi thêm thành công
-  resetForm();
+  // validate data trước khi quyết định thêm
+  // validate  mã sv
+  var isValid = kiemTraRong(sv.ma, "spanMaSV");
+  // validate ten sv
+  isValid =
+    kiemTraRong(sv.ten, "spanTenSV") && kiemTraMinMax(sv.ten, "spanTenSV", 3, 20) && isValid;
+
+  isValid =
+    kiemTraRong(sv.matKhau, "spanMatKhau") &&
+    kiemTraMinMax(sv.matKhau, "spanMatKhau", 8, 20) &&
+    isValid;
+  // validate ...
+
+  isValid = kiemTraRong(sv.email, "spanEmailSV") && kiemTraEmail(sv.email) && isValid;
+  isValid =
+    isValid &
+    kiemTraRong(sv.toan, "spanToan") &
+    kiemTraRong(sv.ly, "spanLy") &
+    kiemTraRong(sv.hoa, "spanHoa");
+  // a() && b() ~ nếu a() return false thì dòng lệnh sẽ kết thúc tại && => dùng kiến thức mới => &
+  // if (!isValid) return;
+  if (isValid) {
+    //   lưu sv vào danh sách
+    dssv.push(sv);
+    //   lưu data xuống localStorage
+    //   b1: convert array to json
+    var dataJson = JSON.stringify(dssv);
+    //   b2: lưu json vào vùng nhớ localStorage
+    localStorage.setItem("DSSV", dataJson);
+    renderDssv(dssv);
+    // reset form sau khi thêm thành công
+    resetForm();
+  }
 }
 function xoaSv(id) {
   // xoá => splice => cần index => tìm index
@@ -118,3 +141,5 @@ var cat2 = cat1;
 
 cat2.color = "black";
 console.log(cat1, cat2);
+
+// regex
