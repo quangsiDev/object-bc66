@@ -11,13 +11,32 @@ function renderDssv(svArray) {
                             <td>${sv.ma}</td>
                             <td>${sv.ten}</td>
                             <td>${sv.email}</td>
-                            <td>0</td>
-                            <td><button
+                            <td>${sv.tinhDTB()}</td>
+                            <td>
+                            <button
                             onclick="xoaSv('${sv.ma}')"
-                            class='btn btn-danger'>Xoá</button></td>
+                            class='btn btn-danger'>Xoá</button>
+                            <button
+                            onclick="suaSv('${sv.ma}')"
+                            class='btn btn-dark'>Sửa</button>
+                            </td>
                        </tr>`;
     contentHTML += trString;
   }
 
   document.getElementById("tbodySinhVien").innerHTML = contentHTML;
+}
+
+function layThongTinTuForm() {
+  // lấy thông tin từ form
+  var ma = document.getElementById("txtMaSV").value;
+  var ten = document.getElementById("txtTenSV").value;
+  var email = document.getElementById("txtEmail").value;
+  var matKhau = document.getElementById("txtPass").value;
+  var toan = document.getElementById("txtDiemToan").value * 1;
+  var ly = document.getElementById("txtDiemLy").value * 1;
+  var hoa = document.getElementById("txtDiemHoa").value * 1;
+  //   tạo object
+  var sv = new SinhVien(ma, ten, email, matKhau, toan, ly, hoa);
+  return sv;
 }

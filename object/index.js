@@ -71,3 +71,22 @@ dog.introduce();
 
 dog.color = "supper black";
 console.log("😀 - dog", dog);
+
+// lớp đối tượng ~ tên lớp đối tượng phải viết In chữ cái đầu tiên
+
+// tạo lớp đối tượng con mèo
+
+function Cat(_name, _color) {
+  this.catName = _name;
+  this.color = _color;
+  this.speak = function () {
+    console.log("meo meo");
+  };
+}
+
+// tạo object từ lớp đối tượng
+
+var cat1 = new Cat("Tomy", "yellow");
+var cat2 = new Cat("Miu", "white");
+var cat3 = new Cat("Mun", "black");
+console.log(cat1, cat2);
